@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swift Sphere | Atmospheric Techno Music</title>
+    <style>
+        /* Base Styling & Variables */
+        :root {
+            --brand-red: #D32F2F;
+            /* Strong, bold red */
+            --brand-red-hover: #B71C1C;
+            --bg-dark: #0A0A0A;
+            --bg-card: #1A1A1A;
+            --text-light: #E0E0E0;
+            --text-white: #FFFFFF;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            /* Modern, clean sans-serif */
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            color: var(--text-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--brand-red);
+            color: var(--text-white);
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--brand-red-hover);
+        }
+
+        /* Navigation */
+        header {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--brand-red);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--brand-red);
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a:hover {
+            color: var(--brand-red);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.9)), url('https://via.placeholder.com/1920x1080/111/D32F2F?text=Techno+Music+Vibes') no-repeat center center/cover;
+            border-bottom: 5px solid var(--brand-red);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #ccc;
+        }
+
+        /* Features/Info Section (3 Columns like reference) */
+        .features {
+            padding: 80px 5%;
+            text-align: center;
+            background-color: #121212;
+        }
+
+        .features h2 {
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            padding: 40px 20px;
+            border-top: 4px solid var(--brand-red);
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h3 {
+            color: var(--brand-red);
+            margin-bottom: 15px;
+        }
+
+        /* Support / About Section (Split layout) */
+        .support-about {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 80px 5%;
+            align-items: center;
+            gap: 50px;
+            background-color: var(--bg-dark);
+        }
+
+        .support-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .support-text h2 {
+            color: var(--brand-red);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .support-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .support-image img {
+            width: 100%;
+            border-radius: 5px;
+            border: 2px solid #333;
+            filter: grayscale(50%);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 5%;
+            background-color: #121212;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 15px;
+            color: var(--brand-red);
+        }
+
+        .contact-section p {
+            margin-bottom: 40px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            background-color: #222;
+            border: 1px solid #444;
+            color: var(--text-white);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--brand-red);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050505;
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .footer-nav {
+            margin-bottom: 20px;
+        }
+
+        .footer-nav a {
+            margin: 0 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .footer-nav a:hover {
+            color: var(--brand-red);
+        }
+
+        .copyright {
+            color: #666;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo">SWIFT SPHERE</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="#contact">Contact Support</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Conquer the Dancefloor</h1>
+        <p>Experience the ultimate atmospheric techno. High-energy, victorious beats engineered for men who demand the
+            best, at a price that can't be beaten.</p>
+        <button class="btn" onclick="alert('Sample ordered!')">Order a Free Sample</button>
+    </section>
+
+    <!-- What We Do / Features Grid (Matches reference 3-column) -->
+    <section class="features">
+        <h2>What We Deliver</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Atmospheric Sound</h3>
+                <p>We craft deep, immersive techno tracks that build a powerful atmosphere and a true sense of victory.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Local Availability</h3>
+                <p>No need to wait for shipping. Swift Sphere tracks and merch are available right in your favorite
+                    local shops.</p>
+            </div>
+            <div class="card">
+                <h3>Unbeatable Price</h3>
+                <p>Premium sound doesn't have to break the bank. We distribute top-tier music that remains incredibly
+                    inexpensive.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support / About Split Section (Matches reference split layout) -->
+    <section class="support-about">
+        <div class="support-text">
+            <h2>Dedicated Customer Support</h2>
+            <p>At Swift Sphere, we don't just distribute victorious techno; we ensure your experience is flawless. Our
+                goal is to make it crystal clear what we do: deliver hard-hitting, affordable beats straight to you.</p>
+            <p>Having trouble finding us in your local shop? Need help with an order or navigating our audio files? Our
+                support team is heavily geared towards solving your problems fast so you can get back to the music.</p>
+        </div>
+        <div class="support-image">
+            <img src="https://via.placeholder.com/600x400/222/D32F2F?text=Customer+Support+Action"
+                alt="Swift Sphere Support">
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <p>Need support or have a question about our techno distribution? Reach out below.</p>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email Address" required>
+            <textarea placeholder="How can our support team assist you?" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-nav">
+            <a href="shop.html">Shop</a>
+            <a href="#contact">Contact Support</a>
+            <a href="terms.html">Terms of Service</a>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Swift Sphere. All rights reserved. Triumphant Techno for Men.
+        </div>
+    </footer>
+
+</body>
+
+</html>
